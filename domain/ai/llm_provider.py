@@ -20,6 +20,10 @@ class LLMProvider(Protocol):
         """Produce a single-line summary of the text."""
         ...
 
+    def generate_text(self, prompt: str, system_prompt: Optional[str] = None) -> str:
+        """Generate unstructured text (e.g. for RAG synthesis)."""
+        ...
+
 
 class MockLLMProvider:
     """Mock LLM provider for deterministic testing."""
@@ -28,10 +32,12 @@ class MockLLMProvider:
         self,
         canned_extractions: Optional[Dict[str, Any]] = None,
         canned_summaries: Optional[Dict[str, str]] = None,
+        canned_text: Optional[str] = None,
         should_raise: bool = False,
     ):
         self.canned_extractions = canned_extractions or {}
         self.canned_summaries = canned_summaries or {}
+        self.canned_text = canned_text
         self.should_raise = should_raise
         self.call_history = []
 
@@ -59,6 +65,12 @@ class MockLLMProvider:
         if self.should_raise:
             raise LLMProviderError("Mock LLM error")
         return self.canned_summaries.get(text, f"Incident Summary: {text[:40]}...")
+
+    def generate_text(self, prompt: str, system_prompt: Optional[str] = None) -> str:
+        self.call_history.append({"method": "generate_text", "prompt": prompt, "system_prompt": system_prompt})
+        if self.should_raise:
+            raise LLMProviderError("Mock LLM error")
+        return self.canned_text or "Based on nearby well records [source: doc_1], loss circulation was encountered."
 
 
 class HeuristicLLMProvider:
@@ -124,6 +136,9 @@ class HeuristicLLMProvider:
         words = text.strip().split()
         summary = " ".join(words[:8])
         return f"{summary}..." if len(words) > 8 else summary
+
+    def generate_text(self, prompt: str, system_prompt: Optional[str] = None) -> str:
+        return "Based on offset well records, nearby wells experienced incidents in this formation."
 
 
 def from_synonyms(text: str):

@@ -104,6 +104,12 @@ class LLMProviderError(ExternalServiceError):
         self.code = "llm_provider_error"
 
 
+class EmbeddingProviderError(ExternalServiceError):
+    def __init__(self, message: str = "Embedding provider invocation failed", detail: Optional[Dict[str, Any]] = None) -> None:
+        super().__init__(message=message, detail=detail)
+        self.code = "embedding_provider_error"
+
+
 class SchemaValidationError(ValidationError):
     def __init__(self, message: str = "Schema validation failed", detail: Optional[Dict[str, Any]] = None) -> None:
         super().__init__(message=message, detail=detail)

@@ -88,6 +88,10 @@ class ContextService:
         )
         return event
 
+    def get_current(self, well_id: uuid.UUID) -> Optional[WellContext]:
+        """Returns latest reported context for well_id."""
+        return self.active_contexts.get(well_id)
+
     def check_adapter_health(self) -> HealthStatus:
         now = datetime.now(timezone.utc)
         if not self.last_heartbeat:

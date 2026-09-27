@@ -25,6 +25,7 @@ from apps.api.routers.documents import router as documents_router
 from apps.api.routers.wells import router as wells_router
 from apps.api.routers.risk import router as risk_router
 from apps.api.routers.alerts import router as alerts_router
+from apps.api.routers.search import router as search_router
 
 logger = get_logger("apps.api.main")
 
@@ -50,6 +51,7 @@ def create_app() -> FastAPI:
     app.include_router(wells_router)
     app.include_router(risk_router)
     app.include_router(alerts_router)
+    app.include_router(search_router)
 
     # Standard Exception Handlers mapping to {error_code, message, detail}
     @app.exception_handler(NotFoundError)

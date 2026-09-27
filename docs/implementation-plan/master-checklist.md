@@ -38,13 +38,13 @@ Status values: `NOT_STARTED` | `IN_PROGRESS` | `BLOCKED` | `TESTING` | `COMPLETE
     - [x] Event persistence, dedup, amendment linkage: `COMPLETE`
     - [x] Provenance stamping verified on every persisted row: `COMPLETE`
 
-- [ ] **Search & RAG (Module 10–11)**: `NOT_STARTED`
-    - [ ] Chunking + embedding pipeline: `NOT_STARTED`
-    - [ ] Metadata + lexical filtering: `NOT_STARTED`
-    - [ ] Vector retrieval (pgvector): `NOT_STARTED`
-    - [ ] Evidence dedup: `NOT_STARTED`
-    - [ ] LLM synthesis with required citations: `NOT_STARTED`
-    - [ ] Citation validation (reject uncited claims): `NOT_STARTED`
+- [x] **Search & RAG (Module 10–11)**: `COMPLETE`
+    - [x] Chunking + embedding pipeline: `COMPLETE`
+    - [x] Metadata + lexical filtering: `COMPLETE`
+    - [x] Vector retrieval (pgvector): `COMPLETE`
+    - [x] Evidence dedup: `COMPLETE`
+    - [x] LLM synthesis with required citations: `COMPLETE`
+    - [x] Citation validation (reject uncited claims): `COMPLETE`
 
 - [x] **Intelligence Layer (Module 12–14)**: `COMPLETE`
     - [x] Correlation engine (all 6 functions, deterministic, tested against planted-overlap fixtures): `COMPLETE`
