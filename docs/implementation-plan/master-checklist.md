@@ -55,12 +55,12 @@ Status values: `NOT_STARTED` | `IN_PROGRESS` | `BLOCKED` | `TESTING` | `COMPLETE
     - [x] Alert lifecycle: notify/acknowledge/escalate/resolve: `COMPLETE`
     - [x] Audit logging on every alert transition: `COMPLETE`
 
-- [ ] **Real-Time (Module 15–16)**: `IN_PROGRESS`
+- [x] **Real-Time (Module 15–16)**: `COMPLETE` (simulator active; prod adapter BLOCKED)
     - [x] eRTMAC adapter interface defined: `COMPLETE`
     - [x] Simulator implementation complete: `COMPLETE`
     - [ ] Production adapter — marked BLOCKED, stub only, dependency documented: `BLOCKED` (pending real eRTMAC API contract)
     - [x] Staleness/out-of-order/duplicate handling: `COMPLETE`
-    - [ ] End-to-end pipeline wiring (context → correlation → risk → alert): `NOT_STARTED`
+    - [x] End-to-end pipeline wiring (context → correlation → risk → alert): `COMPLETE`
 
 - [ ] **Frontend (Module 17)**: `NOT_STARTED`
     - [ ] All routes per Part 18 table implemented: `NOT_STARTED`
