@@ -116,6 +116,7 @@ def create_alert_if_needed(
                 "dedup_key": dedup_key,
                 "event_type": event_type,
             },
+            engine=db.get_bind(),
         )
     except Exception as e:
         logger.warning("audit_log_alert_created_failed", error=str(e))
@@ -155,6 +156,7 @@ def acknowledge(
             resource_type="alert",
             resource_id=alert.alert_id,
             detail={"previous_status": alert.status},
+            engine=db.get_bind(),
         )
     except Exception as e:
         logger.warning("audit_log_alert_acknowledged_failed", error=str(e))
@@ -193,6 +195,7 @@ def resolve(
             resource_type="alert",
             resource_id=alert.alert_id,
             detail={"resolved_by": str(user_id)},
+            engine=db.get_bind(),
         )
     except Exception as e:
         logger.warning("audit_log_alert_resolved_failed", error=str(e))
@@ -223,6 +226,7 @@ def escalate(
                 resource_type="alert",
                 resource_id=alert.alert_id,
                 detail={"reason": "unacknowledged_timeout"},
+                engine=db.get_bind(),
             )
         except Exception as e:
             logger.warning("audit_log_alert_escalated_failed", error=str(e))

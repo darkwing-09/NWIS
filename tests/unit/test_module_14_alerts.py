@@ -267,10 +267,43 @@ def test_alert_api_endpoints(in_memory_db, sample_well, sample_event):
         db=in_memory_db,
     )
 
+def test_acknowledge_records_audit(in_memory_db, sample_well, sample_event):
+    assessment = _make_assessment(sample_well.well_id, "high", [sample_event.event_id])
+    alert = alert_service.create_alert_if_needed(
+        assessment=assessment,
+        well_id=sample_well.well_id,
+        current_depth=2450.0,
+        db=in_memory_db,
+    )
+    user_id = uuid.uuid4()
+    alert_service.acknowledge(alert.alert_id, user_id=user_id, db=in_memory_db)
+    from database.models.audit import AuditLog
+    from sqlalchemy import select
+    logs = list(in_memory_db.scalars(select(AuditLog).where(AuditLog.resource_id == alert.alert_id)).all())
+    actions = [l.action for l in logs]
+    assert "alert_created" in actions
+    assert "alert_acknowledged" in actions
+
+
+# --- 14.4 API Router Tests ---
+
+def test_alert_api_endpoints(in_memory_db, sample_well, sample_event):
+    app = create_app()
+    app.dependency_overrides[get_db] = lambda: in_memory_db
+
+    assessment = _make_assessment(sample_well.well_id, "high", [sample_event.event_id])
+    alert = alert_service.create_alert_if_needed(
+        assessment=assessment,
+        well_id=sample_well.well_id,
+        current_depth=2450.0,
+        db=in_memory_db,
+    )
+
     user_id = uuid.uuid4()
     token = create_token(
-        user_id=user_id,
+        sub=str(user_id),
         email="engineer@oilindia.in",
+        name="Chief Engineer",
         roles=["drilling_engineer", "admin"],
     )
     headers = {"Authorization": f"Bearer {token}"}
