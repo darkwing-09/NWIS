@@ -22,9 +22,9 @@ Status values: `NOT_STARTED` | `IN_PROGRESS` | `BLOCKED` | `TESTING` | `COMPLETE
     - [x] PostGIS nearby-well query: `COMPLETE`
     - [x] Spatial index verified: `COMPLETE`
 
-- [ ] **Document Intelligence (Module 04–08)**: `NOT_STARTED`
-    - [ ] Upload + validation + object storage: `NOT_STARTED`
-    - [ ] Document lifecycle state machine: `NOT_STARTED`
+- [ ] **Document Intelligence (Module 04–08)**: `IN_PROGRESS`
+    - [x] Upload + validation + object storage: `COMPLETE`
+    - [x] Document lifecycle state machine: `COMPLETE`
     - [ ] OCR: classification, text-layer detection, native extraction: `NOT_STARTED`
     - [ ] OCR: Tesseract fallback, confidence scoring: `NOT_STARTED`
     - [ ] OCR: header/footer strip, unit normalization: `NOT_STARTED`

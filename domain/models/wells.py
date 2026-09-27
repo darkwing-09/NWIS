@@ -4,26 +4,7 @@ from typing import List, Optional
 from pydantic import BaseModel, ConfigDict, Field
 
 
-class AuthenticatedUser(BaseModel):
-    """Authenticated user context containing identity, roles, and asset/field scopes."""
-
-    user_id: uuid.UUID
-    email: str
-    name: str
-    roles: List[str] = Field(default_factory=list)
-    allowed_fields: Optional[List[str]] = None  # None = all fields
-
-    model_config = ConfigDict(from_attributes=True)
-
-    def can_access_field(self, field_name: Optional[str]) -> bool:
-        """Return True if user has access to field_name or has all-fields grant."""
-        if "admin" in self.roles:
-            return True
-        if self.allowed_fields is None:
-            return True
-        if field_name is None:
-            return True
-        return field_name in self.allowed_fields
+from domain.models.auth import AuthenticatedUser
 
 
 class WellCreate(BaseModel):
