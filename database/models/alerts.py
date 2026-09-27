@@ -36,7 +36,7 @@ class Alert(Base, TimestampMixin):
     )
     acknowledged_at: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), nullable=True)
     resolved_at: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), nullable=True)
-    dedup_key: Mapped[str] = mapped_column(String(255), nullable=False, index=True)
+    dedup_key: Mapped[str] = mapped_column(String(255), nullable=False)
 
     well: Mapped["Well"] = relationship("Well", back_populates="alerts")  # type: ignore[name-defined]
     evidence: Mapped[List["AlertEvidence"]] = relationship(

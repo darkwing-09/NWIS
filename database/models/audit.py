@@ -35,5 +35,4 @@ class AuditLog(Base):
 
     __table_args__ = (
         Index("ix_audit_logs_resource", "resource_type", "resource_id"),
-        Index("ix_audit_logs_timestamp", "timestamp"),
     )

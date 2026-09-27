@@ -17,11 +17,24 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from database.models.base import Base, TimestampMixin
 
-try:
-    from pgvector.sqlalchemy import Vector
-    EMBEDDING_COLUMN = Vector(1536)
-except ImportError:
-    EMBEDDING_COLUMN = JSON
+from sqlalchemy.types import TypeDecorator
+
+class PortableVector(TypeDecorator):
+    """pgvector Vector(1536) on PostgreSQL, JSON fallback on SQLite/other dialects."""
+    impl = JSON
+    cache_ok = True
+
+    def load_dialect_impl(self, dialect):
+        if dialect.name == "postgresql":
+            try:
+                from pgvector.sqlalchemy import Vector
+                return dialect.type_descriptor(Vector(1536))
+            except ImportError:
+                return dialect.type_descriptor(JSON())
+        return dialect.type_descriptor(JSON())
+
+
+EMBEDDING_COLUMN = PortableVector()
 
 
 class Document(Base, TimestampMixin):

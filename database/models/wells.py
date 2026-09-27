@@ -13,13 +13,24 @@ from sqlalchemy.dialects.postgresql import UUID as PG_UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from database.models.base import Base, TimestampMixin
+from sqlalchemy.types import TypeDecorator, String
 
-# Use geoalchemy2 if available, or fallback gracefully for non-PostGIS dialects
-try:
-    from geoalchemy2 import Geography
-    GEOGRAPHY_POINT = Geography(geometry_type="POINT", srid=4326)
-except ImportError:
-    GEOGRAPHY_POINT = String
+class PortableGeography(TypeDecorator):
+    """PostGIS Geography(POINT, 4326) on PostgreSQL, String fallback on SQLite/other dialects."""
+    impl = String
+    cache_ok = True
+
+    def load_dialect_impl(self, dialect):
+        if dialect.name == "postgresql":
+            try:
+                from geoalchemy2 import Geography
+                return dialect.type_descriptor(Geography(geometry_type="POINT", srid=4326))
+            except ImportError:
+                return dialect.type_descriptor(String())
+        return dialect.type_descriptor(String())
+
+
+GEOGRAPHY_POINT = PortableGeography()
 
 
 class Well(Base, TimestampMixin):
