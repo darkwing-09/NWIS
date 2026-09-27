@@ -75,9 +75,12 @@ class SeverityLevel(str, Enum):
 
 
 class AlertStatus(str, Enum):
+    CREATED = "created"
+    NOTIFIED = "notified"
     TRIGGERED = "triggered"
     ACKNOWLEDGED = "acknowledged"
     RESOLVED = "resolved"
+    ESCALATED = "escalated"
     EXPIRED = "expired"
     SUPPRESSED = "suppressed"
 
