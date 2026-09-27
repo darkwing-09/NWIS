@@ -2,13 +2,13 @@
 
 Status values: `NOT_STARTED` | `IN_PROGRESS` | `BLOCKED` | `TESTING` | `COMPLETE`
 
-- [ ] **Foundation (Module 00–02)**: `IN_PROGRESS`
+- [x] **Foundation (Module 00–02)**: `COMPLETE`
     - [x] Repository structure (Part 4): `COMPLETE`
     - [x] Configuration / settings (Module 01): `COMPLETE`
     - [x] Secrets wiring: `COMPLETE`
     - [x] Base logging (Module 21 groundwork): `COMPLETE`
     - [x] Error taxonomy: `COMPLETE`
-    - [ ] Database connection + first migration: `NOT_STARTED`
+    - [x] Database connection + first migration: `COMPLETE`
 
 - [ ] **Identity & Access (Module 18–20)**: `NOT_STARTED`
     - [ ] OIDC/AuthN integration: `NOT_STARTED`
