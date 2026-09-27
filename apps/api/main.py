@@ -18,6 +18,7 @@ from config.errors import (
 )
 from domain.logging.logger import get_logger, setup_logging
 from apps.api.middleware.request_context import RequestContextMiddleware
+from apps.api.middleware.auth import AuthMiddleware
 from apps.api.routers.health import router as health_router
 
 logger = get_logger("apps.api.main")
@@ -33,7 +34,8 @@ def create_app() -> FastAPI:
         redoc_url="/redoc",
     )
 
-    # Middleware: RequestContext must be outermost so trace_id is available for everything
+    # Middleware: RequestContext is outermost so trace_id is available before auth logs anything
+    app.add_middleware(AuthMiddleware)
     app.add_middleware(RequestContextMiddleware)
 
     # Register Health Router

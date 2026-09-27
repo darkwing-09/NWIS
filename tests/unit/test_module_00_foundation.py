@@ -79,30 +79,34 @@ def test_each_error_maps_to_correct_http_status():
     def raise_unauthorized():
         raise AuthenticationError("Invalid token")
 
+    from services.auth.oidc_client import create_token
+    token = create_token(sub="test-user", email="test@oilindia.in", name="Test User")
+    headers = {"Authorization": f"Bearer {token}"}
+
     client = TestClient(app)
 
-    r404 = client.get("/test-not-found")
+    r404 = client.get("/test-not-found", headers=headers)
     assert r404.status_code == 404
     assert r404.json()["error_code"] == "not_found"
     assert r404.json()["detail"] == {"item_id": "abc"}
 
-    r422 = client.get("/test-validation")
+    r422 = client.get("/test-validation", headers=headers)
     assert r422.status_code == 422
     assert r422.json()["error_code"] == "validation_error"
 
-    r409 = client.get("/test-conflict")
+    r409 = client.get("/test-conflict", headers=headers)
     assert r409.status_code == 409
     assert r409.json()["error_code"] == "conflict"
 
-    r502 = client.get("/test-external")
+    r502 = client.get("/test-external", headers=headers)
     assert r502.status_code == 502
     assert r502.json()["error_code"] == "external_service_error"
 
-    r403 = client.get("/test-forbidden")
+    r403 = client.get("/test-forbidden", headers=headers)
     assert r403.status_code == 403
     assert r403.json()["error_code"] == "forbidden"
 
-    r401 = client.get("/test-unauthorized")
+    r401 = client.get("/test-unauthorized", headers=headers)
     assert r401.status_code == 401
     assert r401.json()["error_code"] == "unauthorized"
 
@@ -114,10 +118,15 @@ def test_unhandled_exception_returns_generic_500_no_stack_trace():
     def raise_unhandled():
         raise RuntimeError("Secret DB password in stack trace: supersecret")
 
+    from services.auth.oidc_client import create_token
+    token = create_token(sub="test-user", email="test@oilindia.in", name="Test User")
+    headers = {"Authorization": f"Bearer {token}"}
+
     client = TestClient(app, raise_server_exceptions=False)
-    resp = client.get("/test-unhandled")
+    resp = client.get("/test-unhandled", headers=headers)
     assert resp.status_code == 500
     data = resp.json()
     assert data["error_code"] == "internal_error"
     assert "supersecret" not in resp.text
     assert data["message"] == "An internal server error occurred"
+

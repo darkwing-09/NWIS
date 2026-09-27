@@ -10,10 +10,10 @@ Status values: `NOT_STARTED` | `IN_PROGRESS` | `BLOCKED` | `TESTING` | `COMPLETE
     - [x] Error taxonomy: `COMPLETE`
     - [x] Database connection + first migration: `COMPLETE`
 
-- [ ] **Identity & Access (Module 18–20)**: `NOT_STARTED`
-    - [ ] OIDC/AuthN integration: `NOT_STARTED`
-    - [ ] RBAC / field-asset scoping: `NOT_STARTED`
-    - [ ] Permissions table + admin management: `NOT_STARTED`
+- [ ] **Identity & Access (Module 18–20)**: `IN_PROGRESS`
+    - [x] OIDC/AuthN integration: `COMPLETE`
+    - [x] RBAC / field-asset scoping: `COMPLETE`
+    - [x] Permissions table + admin management: `COMPLETE`
     - [ ] Audit log (append-only, no update/delete grant): `NOT_STARTED`
 
 - [x] **Well & Geospatial (Module 03, 09)**: `COMPLETE`
