@@ -46,8 +46,8 @@ Status values: `NOT_STARTED` | `IN_PROGRESS` | `BLOCKED` | `TESTING` | `COMPLETE
     - [ ] LLM synthesis with required citations: `NOT_STARTED`
     - [ ] Citation validation (reject uncited claims): `NOT_STARTED`
 
-- [ ] **Intelligence Layer (Module 12–14)**: `NOT_STARTED`
-    - [ ] Correlation engine (all 6 functions, deterministic, tested against planted-overlap fixtures): `NOT_STARTED`
+- [ ] **Intelligence Layer (Module 12–14)**: `IN_PROGRESS`
+    - [x] Correlation engine (all 6 functions, deterministic, tested against planted-overlap fixtures): `COMPLETE`
     - [ ] Risk Stage 1 (rule-based, config-driven thresholds): `NOT_STARTED`
     - [ ] Risk Stage 2/3 — explicitly OUT OF SCOPE until labeled data threshold met (Part 15): `BLOCKED` (gated on ≥50–100 labeled events)
     - [ ] Alert creation + dedup (DB-level unique constraint verified): `NOT_STARTED`
