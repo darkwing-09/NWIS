@@ -46,14 +46,14 @@ Status values: `NOT_STARTED` | `IN_PROGRESS` | `BLOCKED` | `TESTING` | `COMPLETE
     - [ ] LLM synthesis with required citations: `NOT_STARTED`
     - [ ] Citation validation (reject uncited claims): `NOT_STARTED`
 
-- [ ] **Intelligence Layer (Module 12–14)**: `IN_PROGRESS`
+- [x] **Intelligence Layer (Module 12–14)**: `COMPLETE`
     - [x] Correlation engine (all 6 functions, deterministic, tested against planted-overlap fixtures): `COMPLETE`
     - [x] Risk Stage 1 (rule-based, config-driven thresholds): `COMPLETE`
     - [ ] Risk Stage 2/3 — explicitly OUT OF SCOPE until labeled data threshold met (Part 15): `BLOCKED` (gated on ≥50–100 labeled events)
-    - [ ] Alert creation + dedup (DB-level unique constraint verified): `NOT_STARTED`
-    - [ ] Mitigation retrieval (verbatim, zero LLM generation — verified by test): `NOT_STARTED`
-    - [ ] Alert lifecycle: notify/acknowledge/escalate/resolve: `NOT_STARTED`
-    - [ ] Audit logging on every alert transition: `NOT_STARTED`
+    - [x] Alert creation + dedup (DB-level unique constraint verified): `COMPLETE`
+    - [x] Mitigation retrieval (verbatim, zero LLM generation — verified by test): `COMPLETE`
+    - [x] Alert lifecycle: notify/acknowledge/escalate/resolve: `COMPLETE`
+    - [x] Audit logging on every alert transition: `COMPLETE`
 
 - [ ] **Real-Time (Module 15–16)**: `IN_PROGRESS`
     - [x] eRTMAC adapter interface defined: `COMPLETE`
