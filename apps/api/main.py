@@ -20,6 +20,7 @@ from domain.logging.logger import get_logger, setup_logging
 from apps.api.middleware.request_context import RequestContextMiddleware
 from apps.api.middleware.auth import AuthMiddleware
 from apps.api.routers.health import router as health_router
+from apps.api.routers.audit import router as audit_router
 
 logger = get_logger("apps.api.main")
 
@@ -38,8 +39,9 @@ def create_app() -> FastAPI:
     app.add_middleware(AuthMiddleware)
     app.add_middleware(RequestContextMiddleware)
 
-    # Register Health Router
+    # Register Routers
     app.include_router(health_router)
+    app.include_router(audit_router)
 
     # Standard Exception Handlers mapping to {error_code, message, detail}
     @app.exception_handler(NotFoundError)

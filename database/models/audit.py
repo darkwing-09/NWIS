@@ -36,3 +36,16 @@ class AuditLog(Base):
     __table_args__ = (
         Index("ix_audit_logs_resource", "resource_type", "resource_id"),
     )
+
+
+from sqlalchemy import event  # noqa: E402
+
+
+@event.listens_for(AuditLog, "before_update")
+def receive_before_update(mapper, connection, target):
+    raise PermissionError("audit_logs is append-only: UPDATE is strictly prohibited")
+
+
+@event.listens_for(AuditLog, "before_delete")
+def receive_before_delete(mapper, connection, target):
+    raise PermissionError("audit_logs is append-only: DELETE is strictly prohibited")
