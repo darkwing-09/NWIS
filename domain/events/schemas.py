@@ -24,6 +24,17 @@ class DocumentUploaded(BaseEvent):
     payload: DocumentUploadedPayload
 
 
+class DocumentOCRCompletedPayload(BaseModel):
+    document_id: uuid.UUID
+    confidence: float
+    low_confidence_pages: List[int] = Field(default_factory=list)
+
+
+class DocumentOCRCompleted(BaseEvent):
+    event_type: str = "DocumentOCRCompleted"
+    payload: DocumentOCRCompletedPayload
+
+
 class ExtractionCompletedPayload(BaseModel):
     document_id: uuid.UUID
     extraction_id: uuid.UUID

@@ -25,9 +25,9 @@ Status values: `NOT_STARTED` | `IN_PROGRESS` | `BLOCKED` | `TESTING` | `COMPLETE
 - [ ] **Document Intelligence (Module 04–08)**: `IN_PROGRESS`
     - [x] Upload + validation + object storage: `COMPLETE`
     - [x] Document lifecycle state machine: `COMPLETE`
-    - [ ] OCR: classification, text-layer detection, native extraction: `NOT_STARTED`
-    - [ ] OCR: Tesseract fallback, confidence scoring: `NOT_STARTED`
-    - [ ] OCR: header/footer strip, unit normalization: `NOT_STARTED`
+    - [x] OCR: classification, text-layer detection, native extraction: `COMPLETE`
+    - [x] OCR: Tesseract fallback, confidence scoring: `COMPLETE`
+    - [x] OCR: header/footer strip, unit normalization: `COMPLETE`
     - [ ] Extraction: well metadata: `NOT_STARTED`
     - [ ] Extraction: depth events: `NOT_STARTED`
     - [ ] Extraction: formations: `NOT_STARTED`
