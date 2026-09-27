@@ -28,15 +28,15 @@ Status values: `NOT_STARTED` | `IN_PROGRESS` | `BLOCKED` | `TESTING` | `COMPLETE
     - [x] OCR: classification, text-layer detection, native extraction: `COMPLETE`
     - [x] OCR: Tesseract fallback, confidence scoring: `COMPLETE`
     - [x] OCR: header/footer strip, unit normalization: `COMPLETE`
-    - [ ] Extraction: well metadata: `NOT_STARTED`
-    - [ ] Extraction: depth events: `NOT_STARTED`
-    - [ ] Extraction: formations: `NOT_STARTED`
-    - [ ] Extraction: incidents/NPT: `NOT_STARTED`
-    - [ ] Extraction: mud/casing (lower priority): `NOT_STARTED`
-    - [ ] Validation schema gate: `NOT_STARTED`
-    - [ ] Needs-review queue + human review UI backend: `NOT_STARTED`
+    - [x] Extraction: well metadata: `COMPLETE`
+    - [x] Extraction: depth events: `COMPLETE`
+    - [x] Extraction: formations: `COMPLETE`
+    - [x] Extraction: incidents/NPT: `COMPLETE`
+    - [x] Extraction: mud/casing (lower priority): `COMPLETE`
+    - [x] Validation schema gate: `COMPLETE`
+    - [x] Needs-review queue + human review UI backend: `COMPLETE`
     - [ ] Event persistence, dedup, amendment linkage: `NOT_STARTED`
-    - [ ] Provenance stamping verified on every persisted row: `NOT_STARTED`
+    - [x] Provenance stamping verified on every persisted row: `COMPLETE`
 
 - [ ] **Search & RAG (Module 10–11)**: `NOT_STARTED`
     - [ ] Chunking + embedding pipeline: `NOT_STARTED`

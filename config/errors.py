@@ -84,3 +84,40 @@ class WellNotFoundError(NotFoundError):
     def __init__(self, message: str = "Well not found", detail: Optional[Dict[str, Any]] = None) -> None:
         super().__init__(message=message, detail=detail)
         self.code = "well_not_found"
+
+
+class DocumentNotFoundError(NotFoundError):
+    def __init__(self, message: str = "Document not found", detail: Optional[Dict[str, Any]] = None) -> None:
+        super().__init__(message=message, detail=detail)
+        self.code = "document_not_found"
+
+
+class DocumentNotOCRedError(ValidationError):
+    def __init__(self, message: str = "Document has not completed OCR processing", detail: Optional[Dict[str, Any]] = None) -> None:
+        super().__init__(message=message, detail=detail)
+        self.code = "document_not_ocred"
+
+
+class LLMProviderError(ExternalServiceError):
+    def __init__(self, message: str = "LLM provider invocation failed", detail: Optional[Dict[str, Any]] = None) -> None:
+        super().__init__(message=message, detail=detail)
+        self.code = "llm_provider_error"
+
+
+class SchemaValidationError(ValidationError):
+    def __init__(self, message: str = "Schema validation failed", detail: Optional[Dict[str, Any]] = None) -> None:
+        super().__init__(message=message, detail=detail)
+        self.code = "schema_validation_error"
+
+
+class DepthOrderingError(ValidationError):
+    def __init__(self, message: str = "Top depth must be strictly less than bottom depth", detail: Optional[Dict[str, Any]] = None) -> None:
+        super().__init__(message=message, detail=detail)
+        self.code = "depth_ordering_error"
+
+
+class OverlapError(ConflictError):
+    def __init__(self, message: str = "Formation interval overlaps with existing interval", detail: Optional[Dict[str, Any]] = None) -> None:
+        super().__init__(message=message, detail=detail)
+        self.code = "interval_overlap_error"
+

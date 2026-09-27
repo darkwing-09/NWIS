@@ -46,6 +46,18 @@ class ExtractionCompleted(BaseEvent):
     payload: ExtractionCompletedPayload
 
 
+class DocumentExtractionCompletedPayload(BaseModel):
+    document_id: uuid.UUID
+    events_created: int
+    needs_review_count: int
+
+
+class DocumentExtractionCompleted(BaseEvent):
+    event_type: str = "DocumentExtractionCompleted"
+    payload: DocumentExtractionCompletedPayload
+
+
+
 class ExtractionNeedsReviewPayload(BaseModel):
     document_id: uuid.UUID
     extraction_id: uuid.UUID
