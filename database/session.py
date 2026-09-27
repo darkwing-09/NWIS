@@ -50,6 +50,9 @@ def get_session() -> Generator[Session, None, None]:
         session.close()
 
 
+get_db = get_session
+
+
 def get_worker_session() -> Session:
     """Explicit session for background workers (closed in finally block)."""
     factory = get_session_factory()

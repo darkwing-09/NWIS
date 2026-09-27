@@ -22,6 +22,7 @@ from apps.api.middleware.auth import AuthMiddleware
 from apps.api.routers.health import router as health_router
 from apps.api.routers.audit import router as audit_router
 from apps.api.routers.documents import router as documents_router
+from apps.api.routers.wells import router as wells_router
 
 logger = get_logger("apps.api.main")
 
@@ -44,6 +45,7 @@ def create_app() -> FastAPI:
     app.include_router(health_router)
     app.include_router(audit_router)
     app.include_router(documents_router)
+    app.include_router(wells_router)
 
     # Standard Exception Handlers mapping to {error_code, message, detail}
     @app.exception_handler(NotFoundError)

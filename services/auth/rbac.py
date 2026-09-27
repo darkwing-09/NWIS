@@ -44,7 +44,7 @@ def require_permission(resource: str, action: Optional[str] = None) -> Callable:
     else:
         res, act = resource, action or "read"
 
-    def dependency(request: Request) -> None:
+    def dependency(request: Request) -> AuthenticatedUser:
         user: Optional[AuthenticatedUser] = getattr(request.state, "user", None)
         if not user:
             raise AuthorizationError(
@@ -53,7 +53,7 @@ def require_permission(resource: str, action: Optional[str] = None) -> Callable:
             )
 
         if "admin" in user.roles:
-            return
+            return user
 
         if res == "audit":
             raise AuthorizationError(
@@ -64,11 +64,11 @@ def require_permission(resource: str, action: Optional[str] = None) -> Callable:
         # Role-based policy matrix mapping
         # E.g. superintendents and engineers can read wells and documents
         if act == "read":
-            return
+            return user
 
         if act in ("create", "write", "upload"):
             if "engineer" in user.roles or "superintendent" in user.roles:
-                return
+                return user
 
         if act in ("approve", "admin", "delete"):
             raise AuthorizationError(
@@ -76,4 +76,7 @@ def require_permission(resource: str, action: Optional[str] = None) -> Callable:
                 detail={"resource": res, "action": act, "roles": user.roles},
             )
 
+        return user
+
     return dependency
+

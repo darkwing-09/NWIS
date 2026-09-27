@@ -22,7 +22,7 @@ Status values: `NOT_STARTED` | `IN_PROGRESS` | `BLOCKED` | `TESTING` | `COMPLETE
     - [x] PostGIS nearby-well query: `COMPLETE`
     - [x] Spatial index verified: `COMPLETE`
 
-- [ ] **Document Intelligence (Module 04–08)**: `IN_PROGRESS`
+- [x] **Document Intelligence (Module 04–08)**: `COMPLETE`
     - [x] Upload + validation + object storage: `COMPLETE`
     - [x] Document lifecycle state machine: `COMPLETE`
     - [x] OCR: classification, text-layer detection, native extraction: `COMPLETE`
@@ -35,7 +35,7 @@ Status values: `NOT_STARTED` | `IN_PROGRESS` | `BLOCKED` | `TESTING` | `COMPLETE
     - [x] Extraction: mud/casing (lower priority): `COMPLETE`
     - [x] Validation schema gate: `COMPLETE`
     - [x] Needs-review queue + human review UI backend: `COMPLETE`
-    - [ ] Event persistence, dedup, amendment linkage: `NOT_STARTED`
+    - [x] Event persistence, dedup, amendment linkage: `COMPLETE`
     - [x] Provenance stamping verified on every persisted row: `COMPLETE`
 
 - [ ] **Search & RAG (Module 10–11)**: `NOT_STARTED`
