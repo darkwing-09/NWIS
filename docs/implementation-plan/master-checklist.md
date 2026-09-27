@@ -16,11 +16,11 @@ Status values: `NOT_STARTED` | `IN_PROGRESS` | `BLOCKED` | `TESTING` | `COMPLETE
     - [ ] Permissions table + admin management: `NOT_STARTED`
     - [ ] Audit log (append-only, no update/delete grant): `NOT_STARTED`
 
-- [ ] **Well & Geospatial (Module 03, 09)**: `IN_PROGRESS`
+- [x] **Well & Geospatial (Module 03, 09)**: `COMPLETE`
     - [x] Well CRUD: `COMPLETE`
     - [x] Formation interval CRUD: `COMPLETE`
     - [x] PostGIS nearby-well query: `COMPLETE`
-    - [ ] Spatial index verified: `NOT_STARTED`
+    - [x] Spatial index verified: `COMPLETE`
 
 - [ ] **Document Intelligence (Module 04–08)**: `NOT_STARTED`
     - [ ] Upload + validation + object storage: `NOT_STARTED`
